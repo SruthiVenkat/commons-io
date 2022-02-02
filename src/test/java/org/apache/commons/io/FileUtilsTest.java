@@ -626,19 +626,19 @@ public class FileUtilsTest extends AbstractTempDirTest {
         final File objFile1 =
                 new File(tempDirFile, getName() + ".object");
         FileUtils.copyURLToFile(
-                getClass().getResource("/java/lang/Object.class"),
+                Object.class.getResource("/java/lang/Object.class"),
                 objFile1);
 
         final File objFile1b =
                 new File(tempDirFile, getName() + ".object2");
         FileUtils.copyURLToFile(
-                getClass().getResource("/java/lang/Object.class"),
+                Object.class.getResource("/java/lang/Object.class"),
                 objFile1b);
 
         final File objFile2 =
                 new File(tempDirFile, getName() + ".collection");
         FileUtils.copyURLToFile(
-                getClass().getResource("/java/util/Collection.class"),
+                Object.class.getResource("/java/util/Collection.class"),
                 objFile2);
 
         assertFalse(FileUtils.contentEquals(objFile1, objFile2));
@@ -1255,11 +1255,11 @@ public class FileUtilsTest extends AbstractTempDirTest {
 
         // Loads resource
         final String resourceName = "/java/lang/Object.class";
-        FileUtils.copyURLToFile(getClass().getResource(resourceName), file, 500, 500);
+        FileUtils.copyURLToFile(Object.class.getResource(resourceName), file, 500, 500);
 
         // Tests that resuorce was copied correctly
         try (InputStream fis = Files.newInputStream(file.toPath())) {
-            assertTrue(IOUtils.contentEquals(getClass().getResourceAsStream(resourceName), fis),
+            assertTrue(IOUtils.contentEquals(Object.class.getResourceAsStream(resourceName), fis),
                     "Content is not equal.");
         }
         //TODO Maybe test copy to itself like for copyFile()

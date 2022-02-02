@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -175,13 +176,13 @@ public class PathUtilsContentEqualsTest {
 
         // Different files
         final Path objFile1 = Paths.get(temporaryFolder.getAbsolutePath(), getName() + ".object");
-        PathUtils.copyFile(getClass().getResource("/java/lang/Object.class"), objFile1);
+        PathUtils.copyFile(Object.class.getResource("/java/lang/Object.class"), objFile1);
 
         final Path objFile1b = Paths.get(temporaryFolder.getAbsolutePath(), getName() + ".object2");
-        PathUtils.copyFile(getClass().getResource("/java/lang/Object.class"), objFile1b);
+        PathUtils.copyFile(Object.class.getResource("/java/lang/Object.class"), objFile1b);
 
         final Path objFile2 = Paths.get(temporaryFolder.getAbsolutePath(), getName() + ".collection");
-        PathUtils.copyFile(getClass().getResource("/java/util/Collection.class"), objFile2);
+        PathUtils.copyFile(Collection.class.getResource("/java/util/Collection.class"), objFile2);
 
         assertFalse(PathUtils.fileContentEquals(objFile1, objFile2));
         assertFalse(PathUtils.fileContentEquals(objFile1b, objFile2));
